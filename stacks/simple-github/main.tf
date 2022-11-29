@@ -4,7 +4,7 @@ provider "github" {
 
 resource "github_repository" "my_repo" {
   name        = "tf_sp_example"
-  description = "My repository"
+  description = "My amazing repository"
 
   visibility = "public"
 }
