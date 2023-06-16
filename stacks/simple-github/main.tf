@@ -22,7 +22,7 @@ resource "github_repository" "my_repo" {
 
 resource "github_repository" "repos" {
   for_each = tomap(var.repos)
-  name        = each.value.name
-  description = each.value.description
+  name        = each.key
+  description = each.value
   visibility = "public"
 }
