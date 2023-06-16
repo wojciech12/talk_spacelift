@@ -7,7 +7,7 @@ provider "github" {
 
 variable "repos" {
   description = "repos_to_be_created"
-  type = tomap(object({
+  type = map(object({
     name                = string
     description         = string
   }))
