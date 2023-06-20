@@ -7,10 +7,11 @@ provider "github" {
 
 variable "repos" {
   description = "repos_to_be_created"
-  type = map(object({
+  type = list(object({
     name                = string
     description         = string
   }))
+  default = [{"name" = "name1", "description" = "description1"}, {"name" = "name2", "description" = "description2"} ]
 }
 
 resource "github_repository" "my_repo" {
@@ -21,8 +22,8 @@ resource "github_repository" "my_repo" {
 }
 
 resource "github_repository" "repos" {
-  for_each = tomap(var.repos)
-  name        = each.key
-  description = each.value
+  for_each =  { for obj in var.repos.name[*] : obj.description => obj }
+  name        = each.value.name
+  description = each.value.description
   visibility = "public"
 }
