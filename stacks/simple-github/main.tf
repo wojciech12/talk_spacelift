@@ -22,7 +22,7 @@ resource "github_repository" "my_repo" {
 }
 
 resource "github_repository" "repos" {
-  for_each =  { for obj in var.repos.name[*] : obj.description => obj }
+  for_each =  { for obj in var.repos : obj.description => obj }
   name        = each.value.name
   description = each.value.description
   visibility = "public"
